@@ -190,14 +190,13 @@ main p {
   margin: 2rem auto;
   text-align: left;
 }
-
 .organizations ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .organizations li {
@@ -252,7 +251,7 @@ main p {
 /* Tablet and mobile */
 @media (max-width: 768px) {
   .organizations ul {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
 
@@ -408,6 +407,9 @@ footer p {
   footer {
     padding: 1.25rem 1rem;
   }
+  .organizations ul {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* 9. Reduced motion accessibility */

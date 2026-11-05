@@ -1,6 +1,8 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { testConnection } from './src/models/db.js';
+import { getAllOrganizations } from './src/models/organizations.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -34,11 +36,6 @@ app.get('/', async (req, res) => {
     res.render('home', { title });
 });
 
-app.get('/organizations', async (req, res) => {
-    const title = 'Our Partner Organizations';
-    res.render('organizations', { title });
-});
-
 app.get('/projects', async (req, res) => {
     const title = 'Service Projects';
     res.render('projects', { title });
@@ -47,10 +44,32 @@ app.get('/categories', async (req, res) => {
     const title = 'Service Categories';
     res.render('categories', { title });
 });
+app.get('/organizations', async (req, res) => {
+  console.log('ORGANIZATIONS ROUTE WAS CALLED');
+    try {
+        const organizations = await getAllOrganizations();
 
-app.listen(PORT, () => {
-  console.log(`Server is running at http://127.0.0.1:${PORT}`);
-  console.log(`Environment: ${NODE_ENV}`);
+        console.log('Organizations:', organizations);
+        console.log('Number of organizations:', organizations.length);
+
+        return res.render('organizations', {
+            title: 'Our Partner Organizations',
+            organizations: organizations
+        });
+
+    } catch (error) {
+        console.error('Error retrieving organizations:', error);
+        res.status(500).send('Unable to retrieve organizations.');
+    }
+});
+
+const server = app.listen(PORT, () => {
+    console.log(`Server is listening at http://localhost:${PORT}`);
+    console.log(`Environment: ${NODE_ENV}`);
+});
+
+server.on('error', (error) => {
+    console.error('Server error:', error);
 });
 
 

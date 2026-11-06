@@ -39,21 +39,23 @@ app.get('/', async (req, res) => {
 });
 
 
-app.get('/categories', async (req, res) => {
-    console.log('CATEGORIES ROUTE WAS CALLED');
+app.get('/projects', async (req, res) => {
+    console.log('PROJECTS ROUTE WAS CALLED');
 
     try {
-        const categories = await getAllCategories();
+        const projects = await getAllProjects();
 
-        console.log('Categories:', categories);
+        console.log('Service Projects:', projects);
+        console.log('Number of projects:', projects.length);
 
-        return res.render('categories', {
-            title: 'Service Categories',
-            categories: categories
+        return res.render('projects', {
+            title: 'Service Projects',
+            projects: projects
         });
+
     } catch (error) {
-        console.error('Error retrieving categories:', error);
-        res.status(500).send('Unable to retrieve categories.');
+        console.error('Error retrieving projects:', error);
+        res.status(500).send('Unable to retrieve service projects.');
     }
 });
 

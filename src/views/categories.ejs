@@ -1,14 +1,21 @@
-
 <%- include('partials/header') %>
-    <main>
+
+<main class="categories-page">
+    <section class="categories-section">
         <h1><%= title %></h1>
-        <div class="list">
-            <ul>
-                <li>Environmental</li>
-                <li>Educational</li>
-                <li>Community Service</li>
-                <li>Health and Wellness</li>
-            </ul>
+        <p class="categories-intro">
+            Explore the different types of service projects available in our community.
+        </p>
+
+        <div class="categories-grid">
+            <% categories.forEach(category => { %>
+                <article class="category-card">
+                    <div class="category-icon">✦</div>
+                    <h2><%= category.name %></h2>
+                </article>
+            <% }) %>
         </div>
-    </main>
+    </section>
+</main>
+
 <%- include('partials/footer') %>

@@ -4,6 +4,7 @@ import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
+import { getAllCategories } from './src/models/categories.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -38,29 +39,37 @@ app.get('/', async (req, res) => {
 });
 
 
-app.get('/projects', async (req, res) => {
-    console.log('PROJECTS ROUTE WAS CALLED');
+app.get('/categories', async (req, res) => {
+    console.log('CATEGORIES ROUTE WAS CALLED');
 
     try {
-        const projects = await getAllProjects();
+        const categories = await getAllCategories();
 
-        console.log('Service Projects:', projects);
-        console.log('Number of projects:', projects.length);
+        console.log('Categories:', categories);
 
-        return res.render('projects', {
-            title: 'Service Projects',
-            projects: projects
+        return res.render('categories', {
+            title: 'Service Categories',
+            categories: categories
         });
-
     } catch (error) {
-        console.error('Error retrieving projects:', error);
-        res.status(500).send('Unable to retrieve service projects.');
+        console.error('Error retrieving categories:', error);
+        res.status(500).send('Unable to retrieve categories.');
     }
 });
 
 app.get('/categories', async (req, res) => {
-    const title = 'Service Categories';
-    res.render('categories', { title });
+    try {
+        const categories = await getAllCategories();
+
+        return res.render('categories', {
+            title: 'Service Categories',
+            categories: categories
+        });
+
+    } catch (error) {
+        console.error('Error retrieving categories:', error);
+        res.status(500).send('Unable to retrieve categories.');
+    }
 });
 app.get('/organizations', async (req, res) => {
   console.log('ORGANIZATIONS ROUTE WAS CALLED');

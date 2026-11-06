@@ -147,3 +147,35 @@ VALUES
 (3, 'Community Health Awareness',
  'Organizing health education and awareness activities.',
  'Asaba, Nigeria', '2026-12-08');
+
+CREATE TABLE public.category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE public.project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES public.service_project(project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES public.category(category_id)
+        ON DELETE CASCADE
+);
+
+INSERT INTO public.category (name)
+VALUES
+    ('Community Cleanup'),
+    ('Education and Mentoring'),
+    ('Food and Basic Needs');
+
+SELECT project_id, title
+FROM public.service_project
+ORDER BY project_id;

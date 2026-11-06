@@ -148,6 +148,23 @@ VALUES
  'Organizing health education and awareness activities.',
  'Asaba, Nigeria', '2026-12-08');
 
+SELECT organization_id, COUNT(*) AS total_projects
+FROM public.service_project
+GROUP BY organization_id
+ORDER BY organization_id;
+
+SELECT
+    sp.project_id,
+    sp.title,
+    sp.description,
+    sp.location,
+    sp.project_date,
+    o.name AS organization_name
+FROM public.service_project sp
+INNER JOIN public.organization o
+    ON sp.organization_id = o.organization_id
+ORDER BY sp.project_date;
+
 CREATE TABLE public.category (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE

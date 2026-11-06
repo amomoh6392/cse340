@@ -138,46 +138,156 @@ main p {
   background-color: #ffffff;
   object-fit: contain;
 }
-/* ==================================
-   UPCOMING SERVICE PROJECTS
-================================== */
 
-.list {
-  max-width: 850px;
-  margin: 2rem auto;
-  text-align: left;
+/* =========================================
+   SERVICE PROJECTS PAGE
+========================================= */
+
+.projects-page {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Projects introduction */
 
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+.projects-intro {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
-.list li {
-  background-color: var(--primary);
-  color: var(--text);
-  padding: 1.75rem;
-  border: 1px solid var(--border);
-  border-left: 5px solid var(--accent);
-  border-radius: 10px;
-
-  font-family: var(--body-font);
-  font-size: 1rem;
-  line-height: 1.7;
-
-  transition: transform 0.2s ease,
-              box-shadow 0.2s ease;
+.projects-intro h1 {
+    color: #d4af37;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
 }
 
-.list li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+.projects-intro p {
+    color: #cbd5e1;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
 }
+
+/* Projects grid */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual project card */
+
+.project-card {
+    background: #1f2937;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.project-card-content {
+    padding: 1.5rem;
+}
+
+/* Project date */
+
+.project-date {
+    display: inline-block;
+    color: #79e0a6;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+/* Project title */
+
+.project-card h2 {
+    color: var(--accent);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Project description */
+
+.project-description {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+/* Organization */
+
+.project-organization {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-top: 1px solid #334155;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.project-organization strong {
+    color: #79e0a6;
+}
+
+/* Location */
+
+.project-location {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Empty state */
+
+.no-projects {
+    text-align: center;
+    color: #cbd5e1;
+    padding: 3rem 1rem;
+    background: #1f2937;
+    border-radius: 12px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media screen and (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .projects-page {
+        padding: 2rem 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-intro {
+        margin-bottom: 2rem;
+    }
+
+    .project-card-content {
+        padding: 1.25rem;
+    }
+}
+
 
 
 /* ==================================

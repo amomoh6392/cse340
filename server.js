@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllProjects } from './src/models/projects.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -36,10 +37,27 @@ app.get('/', async (req, res) => {
     res.render('home', { title });
 });
 
+
 app.get('/projects', async (req, res) => {
-    const title = 'Service Projects';
-    res.render('projects', { title });
+    console.log('PROJECTS ROUTE WAS CALLED');
+
+    try {
+        const projects = await getAllProjects();
+
+        console.log('Service Projects:', projects);
+        console.log('Number of projects:', projects.length);
+
+        return res.render('projects', {
+            title: 'Service Projects',
+            projects: projects
+        });
+
+    } catch (error) {
+        console.error('Error retrieving projects:', error);
+        res.status(500).send('Unable to retrieve service projects.');
+    }
 });
+
 app.get('/categories', async (req, res) => {
     const title = 'Service Categories';
     res.render('categories', { title });

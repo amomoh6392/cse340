@@ -1,7 +1,8 @@
 
-import db from './db.js'
+import db from './db.js';
 
-const getAllProjects = async() => {
+// Retrieve all service projects
+const getAllProjects = async () => {
     const query = `
         SELECT
             service_project.project_id,
@@ -19,6 +20,28 @@ const getAllProjects = async() => {
 
     const result = await db.query(query);
     return result.rows;
-}
+};
 
-export {getAllProjects}
+// Retrieve service projects belonging to one organization
+const getProjectsByOrganizationId = async (organizationId) => {
+    const query = `
+        SELECT
+            project_id,
+            organization_id,
+            title,
+            description,
+            location,
+            project_date
+        FROM public.service_project
+        WHERE organization_id = $1
+        ORDER BY project_date ASC;
+    `;
+
+    const queryParams = [organizationId];
+    const result = await db.query(query, queryParams);
+
+    return result.rows;
+};
+
+// Export the model functions
+export { getAllProjects, getProjectsByOrganizationId };

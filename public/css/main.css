@@ -407,6 +407,160 @@ main p {
   color: var(--text);
   overflow-wrap: anywhere;
 }
+
+/* =====================================
+   ORGANIZATION DETAILS PAGE
+===================================== */
+
+.organization-details {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    color: #1f2937;
+}
+
+.organization-details > h1 {
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.organization-details > section {
+    background-color: var(--background);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border: 0.8px solid #d1d5db;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.organization-details h2 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+}
+
+.organization-details h3 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.organization-details img {
+    display: block;
+    width: 180px;
+    height: 140px;
+    object-fit: contain;
+    margin: 15px auto 25px;
+    border-radius: 8px;
+}
+
+.organization-details p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.organization-details strong {
+    color: var(--accent);
+}
+
+.organization-details ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.organization-details li {
+    background-color: var(--primary);
+    padding: 15px;
+    border-left: 4px solid #d4af37;
+    border-radius: 6px;
+}
+
+.organization-details li a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.organization-details li a:hover {
+    color: #a07812;
+    text-decoration: underline;
+}
+
+/* =====================================
+   ORGANIZATIONS LIST PAGE
+===================================== */
+
+.organizations ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.organizations li {
+    background-color:var(--surface);
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    line-height: 1.7;
+}
+
+.organizations img {
+    display: block;
+    width: 120px;
+    height: 100px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+}
+
+.organizations a {
+    color: #0d5135;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.organizations a:hover {
+    color: #a07812;
+    text-decoration: underline;
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+
+@media screen and (max-width: 600px) {
+    .organization-details {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .organization-details > section {
+        padding: 18px;
+    }
+
+    .organization-details > h1 {
+        font-size: 1.6rem;
+    }
+
+    .organization-details ul,
+    .organizations ul {
+        grid-template-columns: 1fr;
+    }
+
+    .organization-details img {
+        width: 140px;
+        height: 120px;
+    }
+}
+
 /* ================================
    CATEGORIES PAGE
 ================================ */

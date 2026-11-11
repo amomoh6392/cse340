@@ -18,7 +18,7 @@
                     <div class="project-card-content">
 
                         <p class="project-date">
-                            <%= new Date(project.project_date).toLocaleDateString('en-GB', {
+                            <%= new Date(project.date).toLocaleDateString('en-GB', {
                                 day: 'numeric',
                                 month: 'long',
                                 year: 'numeric',
@@ -26,7 +26,11 @@
                             }) %>
                         </p>
 
-                        <h2><%= project.title %></h2>
+                        <h2>
+                            <a href="/project/<%= project.project_id %>">
+                                <%= project.title %>
+                            </a>
+                        </h2>
 
                         <p class="project-description">
                             <%= project.description %>
@@ -34,7 +38,9 @@
 
                         <p class="project-organization">
                             Sponsored by:
-                            <strong><%= project.organization_name %></strong>
+                            <strong><a href="/organization/<%= project.organization_id %>">
+                                    <%= project.organization_name %>
+                                </a></strong>
                         </p>
 
                         <p class="project-location">

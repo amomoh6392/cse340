@@ -744,7 +744,7 @@ main p {
 .categories-page {
     min-height: 70vh;
     padding: 3rem 1.5rem;
-    background: #111827;
+    background: var(--surface);
 }
 
 .categories-section {
@@ -774,7 +774,7 @@ main p {
 }
 
 .category-card {
-    background: #1f2937;
+    background: var(--background);
     border: 1px solid #334155;
     border-left: 4px solid #d4af37;
     border-radius: 12px;
@@ -795,11 +795,24 @@ main p {
 }
 
 .category-card h2 {
-    color: #f9fafb;
+  margin: 0;
+}
+.category-card h2 a {
+    color: var(--accent);
     font-size: 1.25rem;
-    margin: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+.category-card h2 a:hover {
+    color: #79e0a6;
+    text-decoration: underline;
+}
+
+.category-card h2 a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
 /* Mobile layout */
 @media (max-width: 600px) {
     .categories-page {
@@ -937,4 +950,167 @@ footer p {
   nav a {
     transition: none;
   }
+}
+
+/* =====================================
+   CATEGORY DETAILS PAGE
+===================================== */
+
+.category-projects {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem auto;
+    text-align: left;
+
+}
+
+.category-project-card {
+    min-width: 0;
+    padding: 1.5rem;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 12px;
+    transition: transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.category-project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.category-project-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.category-project-card h2 a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.category-project-card h2 a:hover {
+    color: #79e0a6;
+    text-decoration: underline;
+}
+
+.category-project-card p {
+    max-width: 100%;
+    margin: 0 0 1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.category-project-card p:last-child {
+    margin-bottom: 0;
+}
+
+.category-project-card strong {
+    color: #79e0a6;
+}
+
+/* Back to all categories link */
+
+.categories-section > p:last-child a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary);
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease,
+                color 0.3s ease;
+}
+
+.categories-section > p:last-child a:hover {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+/* =====================================
+   PROJECT CATEGORY TAGS
+===================================== */
+
+.project-categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.project-categories strong {
+    color: var(--accent);
+}
+
+.project-categories .category-tag {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background-color: var(--primary);
+    color: var(--text);
+    border: 1px solid #79e0a6;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease,
+                color 0.2s ease;
+}
+
+.project-categories .category-tag:hover {
+    background-color: var(--accent);
+    color: var(--background);
+    text-decoration: none;
+}
+
+.project-categories .category-tag:focus-visible,
+.category-project-card h2 a:focus-visible,
+.categories-section > p:last-child a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* =====================================
+   CATEGORY AND TAG RESPONSIVENESS
+===================================== */
+
+@media screen and (max-width: 900px) {
+    .category-projects {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .category-projects {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .category-project-card {
+        padding: 1.25rem;
+    }
+
+    .project-categories {
+        align-items: flex-start;
+    }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .category-project-card,
+    .category-project-card h2 a,
+    .project-categories .category-tag {
+        transition: none;
+    }
+
+    .category-project-card:hover {
+        transform: none;
+    }
 }

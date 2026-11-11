@@ -10,5 +10,18 @@ const getAllCategories = async() => {
     const result = await db.query(query);
     return result.rows;
 }
+// Retrieve one category by its ID
+const getCategoryById = async (categoryId) => {
+    const query = `
+        SELECT category_id, name
+        FROM public.category
+        WHERE category_id = $1;
+    `;
 
-export {getAllCategories}
+    const queryParams = [categoryId];
+    const result = await db.query(query, queryParams);
+
+    return result.rows[0];
+};
+
+export {getAllCategories, getCategoryById}

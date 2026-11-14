@@ -342,7 +342,7 @@ main p {
 
 /* Back to projects link */
 
-.projects-page > p > a {
+.projects-page > p > a ,.organization-details > p > a {
     display: inline-block;
     padding: 0.7rem 1.3rem;
     background-color: var(--primary);
@@ -353,7 +353,7 @@ main p {
     transition: background-color 0.2s ease;
 }
 
-.projects-page > p > a:hover {
+.projects-page > p > a:hover,.organization-details > p > a:hover {
     background-color: var(--accent);
     color: var(--background);
 }
@@ -859,6 +859,15 @@ footer {
   text-align: center;
   padding: 1.5rem;
   border-top: 3px solid var(--accent);
+}
+.project-details p a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.project-details p a:hover {
+    text-decoration: underline;
 }
 
 footer p {

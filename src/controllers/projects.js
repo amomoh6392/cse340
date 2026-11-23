@@ -1,5 +1,5 @@
 
-import { getUpcomingProjects, getProjectDetails, getCategoriesByProjectId, createProject} from '../models/projects.js';
+import { getUpcomingProjects, getProjectDetails, getCategoriesByProjectId, createProject,updateProject} from '../models/projects.js';
 
 import { getAllOrganizations } from '../models/organizations.js';
 
@@ -122,4 +122,43 @@ const projectValidation = [
         .isInt()
         .withMessage('Please select a valid organization.')
 ];
-export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
+// Display the Edit Project form
+const showEditProjectForm = async (req, res) => {
+    const project_id = req.params.id
+
+    const project = await getProjectDetails(project_id)
+    const organizations = await getAllOrganizations()
+
+    res.render("edit-project", {
+        title: "Edit Service Project",
+        project,
+        organizations
+    })
+}
+// Process the Edit Project form
+const processEditProjectForm = async (req, res) => {
+    const project_id = req.params.id
+
+    const {
+        organization_id,
+        title,
+        description,
+        location,
+        project_date
+    } = req.body
+
+    await updateProject(
+        project_id,
+        organization_id,
+        title,
+        description,
+        location,
+        project_date
+    )
+
+    req.flash("notice", "Project updated successfully.")
+
+    res.redirect(`/project/${project_id}`)
+}
+
+export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };

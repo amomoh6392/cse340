@@ -164,5 +164,42 @@ const createProject = async (
 
     return result.rows[0].project_id;
 };
+
+// Update an existing service project
+const updateProject = async (
+    project_id,
+    organization_id,
+    title,
+    description,
+    location,
+    project_date
+) => {
+    const sql = `
+        UPDATE public.service_project
+        SET
+            organization_id = $1,
+            title = $2,
+            description = $3,
+            location = $4,
+            project_date = $5
+        WHERE project_id = $6
+        RETURNING *
+    `
+
+    const result = await db.query(sql, [
+        organization_id,
+        title,
+        description,
+        location,
+        project_date,
+        project_id
+    ])
+
+    if (result.rows.length === 0) {
+        throw new Error("Project not found or could not be updated.")
+    }
+
+    return result.rows[0]
+}
 // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, getCategoriesByProjectId, getProjectsByCategoryId, createProject };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, getCategoriesByProjectId, getProjectsByCategoryId, createProject, updateProject };

@@ -21,8 +21,13 @@
             <strong>Contact Email:</strong>
             <%= organizationDetails.contact_email %>
         </p>
+        <div class="organization-actions">
+            <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="button">
+                Edit Organization
+            </a>
+        </div>
     </section>
-
+        
     <section>
         <h3>Service Projects</h3>
 
@@ -42,7 +47,7 @@
         
     </section>
     <p>
-        <a href="/organizations">← Back to Organizations</a>
+        <a href="/organizations" class="button">← Back to Organizations</a>
     </p>
 </main>
 

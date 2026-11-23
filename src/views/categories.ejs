@@ -1,8 +1,10 @@
+
 <%- include('partials/header') %>
 
 <main class="categories-page">
     <section class="categories-section">
         <h1><%= title %></h1>
+
         <p class="categories-intro">
             Explore the different types of service projects available in our community.
         </p>
@@ -11,13 +13,28 @@
             <% categories.forEach(category => { %>
                 <article class="category-card">
                     <div class="category-icon">✦</div>
+
                     <h2>
                         <a href="/category/<%= category.category_id %>">
                             <%= category.name %>
                         </a>
                     </h2>
+
+                    <div class="category-card-actions">
+                        <a
+                            href="/edit-category/<%= category.category_id %>"
+                            class="button"
+                        >
+                            Edit Category
+                        </a>
+                    </div>
                 </article>
             <% }) %>
+        </div>
+        <div class="categories-actions">
+            <a href="/new-category" class="button">
+                + Create New Category
+            </a>
         </div>
     </section>
 </main>
